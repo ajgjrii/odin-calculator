@@ -1,10 +1,9 @@
-// Created an event listener for numeric and operand keypresses
+// Created an event listener for numeric and operator keypresses
 document.addEventListener("keypress", function(event) {
-    // Check if the key pressed is a number (0-9) or an operand (+, -, *, /)
     if (/[0-9+\-*/.]/.test(event.key)) {
       var numOps = document.getElementById("input");
-      // Get the element with ID "input" and append the key pressed to its contents
       numOps.textContent += event.key;
+      // "entry" will be used for the splitString function
       entry = numOps.textContent;
     }
   });
@@ -12,16 +11,20 @@ document.addEventListener("keypress", function(event) {
 // Stores the operator as a variable
 document.addEventListener("keypress", function(event) {
   if (/[+\-*/]/.test(event.key)) {
+    // "operator" will be used for the splitString function
     operator = event.key;
   }
 });
 
-// Created an event listener for "enter" key
+// Created an event listener for "enter" key, which will execute several activities
 document.addEventListener("keypress", function(event) {
   if (event.key === 'Enter') {
+    // numOps and output need to be called since they will be both be interacted with
     var numOps = document.getElementById("input");
     var output = document.getElementById("output");
+    // when "enter" is pressed, the splitString function is called
     splitString(entry, operator);
+    // Block calls the calculator function and write the output to #output; numOps.textContent is cleared
     output.textContent = calculator(calculation.num1, calculation.num2, calculation.delim);
     numOps.textContent = "";
   }
@@ -34,6 +37,7 @@ function splitString(str, delimiter) {
   const [num1, num2] = nums;
   const delim = delimiter;
 
+  // stores variables as an object and returns the object
   calculation = { num1, num2, delim };
   return calculation;
 }
