@@ -19,7 +19,7 @@ clearEverything.addEventListener("click", () => {
   numOps.textContent = "";
 })
 
-// Set values for the "enter" key; needed to simulate pressing
+// Created keyboard events for operators and equals buttons
 const enterKeyEvent = new KeyboardEvent('keydown', {
   key: 'Enter',
   code: 'Enter',
@@ -28,17 +28,76 @@ const enterKeyEvent = new KeyboardEvent('keydown', {
   bubbles: true,
 });
 
-// simulates the "enter" key being pressed
+const multiplyKeyEvent = new KeyboardEvent('keydown', {
+  key: '*',
+  code: 'NumpadMultiply',
+  keyCode: 106,
+  which: 106,
+  bubbles: true,
+});
+
+const dotKeyEvent = new KeyboardEvent('keydown', {
+  key: '.',
+  code: 'Period',
+  keyCode: 190,
+  which: 190,
+  bubbles: true,
+});
+
+const divideKeyEvent = new KeyboardEvent('keydown', {
+  key: '/',
+  code: 'Slash',
+  keyCode: 111,
+  which: 111,
+  bubbles: true,
+});
+
+const minusKeyEvent = new KeyboardEvent('keydown', {
+  key: '-',
+  code: 'Minus',
+  keyCode: 109,
+  which: 109,
+  bubbles: true,
+});
+
+const plusKeyEvent = new KeyboardEvent('keydown', {
+  key: '+',
+  code: 'Plus',
+  keyCode: 107,
+  which: 107,
+  bubbles: true,
+});
+
+// simulates key presses by calling events
 var equals = document.getElementById("btnenter");
 equals.addEventListener("click", () => {
   document.dispatchEvent(enterKeyEvent);
-})
+});
 
+var multiply = document.getElementById("btnmultiply");
+multiply.addEventListener("click", () => {
+  document.dispatchEvent(multiplyKeyEvent);
+});
 
+var dot = document.getElementById("btndecimal");
+dot.addEventListener("click", () => {
+  document.dispatchEvent(dotKeyEvent);
+});
 
+var divide = document.getElementById("btndivide");
+divide.addEventListener("click", () => {
+  document.dispatchEvent(divideKeyEvent);
+});
 
+var minus = document.getElementById("btnminus");
+minus.addEventListener("click", () => {
+  document.dispatchEvent(minusKeyEvent);
+});
 
-
+var plus = document.getElementById("btnplus");
+plus.addEventListener("click", () => {
+  document.dispatchEvent(plusKeyEvent);
+});
 
 
 
