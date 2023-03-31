@@ -68,10 +68,24 @@ const plusKeyEvent = new KeyboardEvent('keydown', {
   bubbles: true,
 });
 
+const backspaceKeyEvent = new KeyboardEvent('keydown', {
+    key: 'Backspace',
+    code: 'Backspace',
+    keyCode: 8,
+    which: 8,
+    bubbles: true
+});
+
 // simulates key presses by calling events
 var equals = document.getElementById("btnenter");
 equals.addEventListener("click", () => {
   document.dispatchEvent(enterKeyEvent);
+});
+
+var backspace = document.getElementById("backspace");
+backspace.addEventListener("click", () => {
+  document.dispatchEvent(backspaceKeyEvent);
+  console.log(backspaceKeyEvent);
 });
 
 var multiply = document.getElementById("btnmultiply");
@@ -102,11 +116,13 @@ plus.addEventListener("click", () => {
 
 // This function controls what will be shown on the calculator's display
 function displayCalc (event) {
+  var numOps = document.getElementById("input");
+  // This block will execute if backspace key is pressed
+  if (event.key === "Backspace") {
+    numOps.textContent = numOps.textContent.slice(0, -1);
+  }
   // This block will execute if 0-9, decimal, or operators are pressed
-  if (/[0-9+\-*/.]/.test(event.key)) {
-    // valid keystrokes are written to "input" display and stored in variable "entry";
-    // variables "entry" and "operator" will be used for 
-    var numOps = document.getElementById("input");
+  else if (/[0-9+\-*/.]/.test(event.key)) {
     numOps.textContent += event.key;
     entry = numOps.textContent;
     // This block will only execute if an operator is used
