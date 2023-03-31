@@ -100,7 +100,6 @@ plus.addEventListener("click", () => {
 });
 
 
-
 // This function controls what will be shown on the calculator's display
 function displayCalc (event) {
   // This block will execute if 0-9, decimal, or operators are pressed
@@ -170,3 +169,24 @@ function numberPad (key) {
   });
   document.dispatchEvent(keyboardEvent);
 }
+
+
+/* THIS BLOCK OF CODE CAN REPLACE KEY EVENT SECTION, BUT NEEDS MODIFICATION
+const keyEvents = [
+  {key: 'Enter', code: 'Enter', keyCode: 13, which: 13},
+  {key: '*', code: 'NumpadMultiply', keyCode: 106, which: 106},
+  {key: '.', code: 'Period', keyCode: 190, which: 190},
+  {key: '/', code: 'Slash', keyCode: 111, which: 111},
+  {key: '-', code: 'Minus', keyCode: 109, which: 109},
+  {key: '+', code: 'Plus', keyCode: 107, which: 107},
+];
+
+keyEvents.forEach(({key, code, keyCode, which}) => {
+  const keyEvent = new KeyboardEvent('keydown', {key, code, keyCode, which, bubbles: true});
+  const button = document.getElementById(`btn${key.toLowerCase()}`);
+  button.addEventListener('click', () => {
+    document.dispatchEvent(keyEvent);
+    console.log(keyEvent); // DELETE ME LATER
+  });
+});
+*/
